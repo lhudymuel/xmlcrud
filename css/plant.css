@@ -1,0 +1,112 @@
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.5),#111111), url(../img/plantbg2.jpg);
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+    height: 100vh;
+}
+
+th {
+    background-color: rgba(10, 102, 10, 0.877);
+    opacity: .10;
+    color: white;
+}
+h3{
+    color: #fff;
+}
+
+td {
+    color: #2c3135;
+    background-color: #fcfcfc;
+
+}
+
+p {
+    color: #2c3135;
+    font-size: 14px;
+}
+
+
+th,
+td {
+    font-family: 'Montserrat', sans-serif;
+    width: 700px;
+    border-radius: 0;
+    border: 1px;
+    text-align: center;
+    cursor: pointer;
+    opacity: .7;
+}
+table{
+    font-family: 'Montserrat', sans-serif;
+    width: 700px;
+    border-radius: 0;
+    border: 1px;
+    text-align: center;
+    cursor: pointer;
+    opacity: .7;
+    margin-left: 115px;
+}
+
+td:hover {
+    background-color: rgba(10, 102, 10, 0.877);
+    color: #fff;
+    font-weight: bold;
+    opacity: 90%;
+}
+
+th,
+td {
+    padding: 5px;
+    width: 500px;
+}
+label{
+    color: #fcfcfc;
+    float: left;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid;
+    width: 200px;
+    height: 10px;
+    padding: 10px;
+    background-color: rgba(2, 29, 0, 0.514);
+    opacity: .4;
+    color: #fff;
+}
+
+.form {
+    display: flex;
+    margin-left: 50px;
+}
+
+form {
+    width: 350px;
+    background: linear-gradient(#000000c4, #606C5D);
+    box-sizing: border-box;
+    border-radius: .5rem;
+    text-align: center;
+}
+
+.btn{
+    background-color: white;
+    display: inline-block;
+    margin-top: .9rem;
+    padding:1rem 3rem;
+    cursor: pointer;
+    color:black;
+    font-size: 1rem;
+    border-radius: .5rem;
+    margin-top: 10px;
+ }
+ .btn:hover{
+    background: rgba(10, 102, 10, 0.877);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(10, 102, 10, 0.877),
+                0 0 18px rgba(10, 102, 10, 0.877),
+                0 0 30px rgba(10, 102, 10, 0.877),
+                0 0 70px rgba(10, 102, 10, 0.877);
+ }

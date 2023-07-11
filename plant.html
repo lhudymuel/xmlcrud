@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Activity</title>
+        <link rel="stylesheet" href="css/plant.css"/>
+    </head>
+    <body>
+    <div class="form" >
+        <form method="post">
+            <h3>Plant Catalog</h3>
+            <label for="common">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Common:</label><br>
+            
+            <input type="text" name="common_name" placeholder="Common" id="common" /><br><br>
+
+            <br><label for="botanical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Botanical:</label>
+            <br>
+            <input type="text" name="botanica_name" placeholder="Botanical" id="botanical" /><br><br>
+
+            <br><label for="zone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zone:</label>
+            <br />
+            <input type="text" name="zone_name" placeholder="Zone" id="zone" /><br><br>
+
+            <br><label for="light">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Light:</label>
+            <br />
+            <input type="text" name="light_name" placeholder="Light" id="light" /><br><br>
+
+            <br><label for="price">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price:</label>
+            <br />
+            <input type="text" name="price_name" placeholder="Price" id="price" /><br><br>
+
+            <br><label for="availability_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Availability:</label>
+            <br />
+            <input type="text" name="availability" placeholder="Availability" id="availability" /><br><br>
+
+
+            <button class="btn" type="button" name="submit" onclick="saveData()"> Save</button></br><br>
+        </form>
+        <div class="table-container">
+            <table id="table" class="form" style="height:690px;width:720px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+            </table>
+        </div>
+    </div>
+
+   
+    <script>
+        
+        function saveData() {
+                var table = document.getElementById('table');
+                var selectedRow = table.getElementsByClassName('selected')[0];
+
+                if (selectedRow) {
+                    selectedRow.cells[0].innerHTML =
+                        document.getElementById('common').value;
+                    selectedRow.cells[1].innerHTML =
+                        document.getElementById('botanical').value;
+                    selectedRow.cells[2].innerHTML =
+                        document.getElementById('zone').value;
+                    selectedRow.cells[3].innerHTML =
+                        document.getElementById('light').value;
+                    selectedRow.cells[4].innerHTML =
+                        document.getElementById('price').value;
+                    selectedRow.cells[5].innerHTML =
+                        document.getElementById('availability').value;
+                }
+            }
+
+        function submitForm() {
+            var common = document.getElementById('common').value;
+            var botanical = document.getElementById('botanical').value;
+            var zone = document.getElementById('zone').value;
+            var light = document.getElementById('light').value;
+            var price = document.getElementById('price').value;
+            var availability = document.getElementById('availability').value;
+
+            var xhttp = new XMLHttpRequest();
+            //patch
+        }
+
+        
+
+        function viewData() {
+            var table = document.getElementById('table');
+            var rows = table.getElementsByTagName('tr');
+            for (i = 0; i < rows.length; i++) {
+                //when table row is click display value on all input
+                rows[i].onclick = function () {
+                    document.getElementById('common').value =
+                        this.cells[0].innerHTML;
+                    document.getElementById('botanical').value =
+                        this.cells[1].innerHTML;
+                    document.getElementById('zone').value =
+                        this.cells[2].innerHTML;
+                    document.getElementById('light').value =
+                        this.cells[3].innerHTML;
+                    document.getElementById('price').value =
+                        this.cells[4].innerHTML;
+                    document.getElementById('availability').value =
+                        this.cells[5].innerHTML;
+                };
+            }
+        }
+        function viewData() {
+                //set global variable for row index
+
+                var table = document.getElementById('table');
+                var rows = table.getElementsByTagName('tr');
+
+                for (i = 0; i < rows.length; i++) {
+                    rows[i].onclick = function () {
+                        for (j = 0; j < rows.length; j++) {
+                            rows[j].classList.remove('selected');
+                        }
+
+                        // add the "selected" class to the clicked row
+                        this.classList.add('selected');
+                        document.getElementById('common').value =
+                            this.cells[0].innerHTML;
+                        document.getElementById('botanical').value =
+                            this.cells[1].innerHTML;
+                        document.getElementById('zone').value =
+                            this.cells[2].innerHTML;
+                        document.getElementById('light').value =
+                            this.cells[3].innerHTML;
+                        document.getElementById('price').value =
+                            this.cells[4].innerHTML;
+                        document.getElementById('availability').value =
+                            this.cells[5].innerHTML;
+                    };
+                }
+            }
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunction(this);
+                }
+            };
+            xhttp.open('GET', 'xmlfile/plant_catalog.xml', true);
+            xhttp.send();
+        }
+
+        function myFunction(xml) {
+            var i;
+            var xmlDoc = xml.responseXML;
+            var table =
+                '<tr><th>Common</th><th>botanical</th><th>Zone</th><th>Light</th><th>Price</th><th>Availability</th></tr>';
+            var x = xmlDoc.getElementsByTagName('PLANT');
+            for (i = 0; i < x.length; i++) {
+                table +=
+                    '<tr onclick="viewData()"><td>' +
+                    x[i].getElementsByTagName('COMMON')[0].childNodes[0]
+                        .nodeValue +
+                    '</td><td>' +
+                    x[i].getElementsByTagName('BOTANICAL')[0].childNodes[0]
+                        .nodeValue +
+                    '</td><td>' +
+                    x[i].getElementsByTagName('ZONE')[0].childNodes[0]
+                        .nodeValue +
+                    '</td><td>' +
+                    x[i].getElementsByTagName('LIGHT')[0].childNodes[0]
+                        .nodeValue +
+                    '</td><td>' +
+                    x[i].getElementsByTagName('PRICE')[0].childNodes[0]
+                        .nodeValue +
+                    '</td><td>' +
+                    x[i].getElementsByTagName('AVAILABILITY')[0]
+                        .childNodes[0].nodeValue +
+                    '</td></tr>';
+            }
+            document.getElementById('table').innerHTML = table;
+        }
+
+        loadDoc();
+    </script>
+   
+</body>
+</html>
